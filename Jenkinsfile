@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'sudo cp -r * ${DEPLOY_DIR}/'
-                sh 'echo "Site is LIVE at http://13.233.90.57"'
+                sh 'echo "Site is LIVE"'
             }
         }
     }
