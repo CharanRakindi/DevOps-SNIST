@@ -1,1 +1,13 @@
 
+{
+  "name": "my-website",
+  "version": "1.0.0",
+  "description": "DevOps project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests yet\" && exit 0",
+    "build": "echo \"Build complete\""
+  },
+  "author": "Charan",
+  "license": "MIT"
+}
