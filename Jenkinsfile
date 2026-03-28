@@ -8,6 +8,13 @@ pipeline {
 
     stages {
 
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/CharanRakindi/DevOps-SNIST.git'
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'npm install'
@@ -21,16 +28,25 @@ pipeline {
             }
         }
 
+        stage('Terraform') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform init'
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+
         stage('Deploy') {
             steps {
                 sh 'sudo cp -r * ${DEPLOY_DIR}/'
-                sh 'echo "Site is LIVE"'
+                sh 'echo "Deployment SUCCESSFUL!"'
             }
         }
     }
 
     post {
         success { echo 'Deployment SUCCESSFUL!' }
-        failure  { echo 'Build FAILED — Check logs' }
+        failure { echo 'Build FAILED — Check logs' }
     }
 }
